@@ -1,0 +1,2 @@
+serviceClass: com.fourture.mark.client.GreetingService
+path: 41DBE314C649B037B435E4F0BE63D001.gwt.rpc

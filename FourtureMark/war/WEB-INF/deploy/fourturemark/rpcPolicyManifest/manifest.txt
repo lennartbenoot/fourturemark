@@ -1,0 +1,3 @@
+# Module fourturemark
+# RPC service class, partial path of RPC policy file
+com.fourture.mark.client.GreetingService, 41DBE314C649B037B435E4F0BE63D001.gwt.rpc
