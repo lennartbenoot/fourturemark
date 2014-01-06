@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Securex Browser Check</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Cache-Control" content="must-revalidate">
+    <meta http-equiv="Cache-Control" content="proxy-revalidate">
+    <meta http-equiv="Cache-Control" content="no-store">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+   <!--  <script type="text/javascript" src="http://fourturemark.appspot.com/websitekickServlet?lang=nl&debug=true"></script> -->
+   <script type="text/javascript" src="http://localhost:8888/websitekickServlet?lang=nl&debug=true"></script>
+   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    
+    <script>   
+    	//google.load('chrome-frame', '1');
+    	// if (CFInstall.isAvailable()) {
+        //    alert("GFC is available");
+        //  }
+    
+        function performCheck() {
+            try {
+                websitekick('cbs','0476982850','Malfait');
+            }
+            catch(err){   
+            	alert('exception thrown, normally now redirecting but not doing for debug purposes:' + err)
+            	//window.location.href = 'https://www.mysecurexhrservices.eu';
+            }
+        }
+    </script>
+</head>
+<body onload="javascript:performCheck()">
+    
+ <button onclick="javascript:performCheck()">Perform</button>   
+    
+</body>
+</html>

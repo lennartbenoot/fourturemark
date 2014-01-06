@@ -1,0 +1,202 @@
+body{
+background-color:#CCCCCC;
+font-family:Trebuchet MS;
+}
+
+.item {
+margin:1px 1px 1px 1px;
+padding:1px 1px 1px 1px;
+}
+
+.windows {
+background:url("../images/os.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.defaultos {
+background:url("../images/defaultOS.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.explorer {
+background:url("../images/explorer.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.chrome {
+background:url("../images/chrome.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.defaultbrowser {
+background:url("../images/defaultbrowser.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.firefox {
+background:url("../images/firefox.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.resolution {
+background:url("../images/resolution.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.javascript {
+background:url("../images/js.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.flash {
+background:url("../images/flash.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.colordepth {
+background:url("../images/color.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.ip {
+background:url("../images/ip.jpg") no-repeat scroll left 7px transparent;
+min-height:40px;
+min-width:40px;
+float:left;
+}
+
+.datapaddingleft{
+padding-left: 40px;
+}
+
+.stars{
+float:right;
+}
+
+.webperformance{
+float:left;
+font-weight:normal;
+min-height:25px;
+min-width:300px;
+}
+
+.userdata{
+min-height:350px;
+min-width:300px;
+border-right:dashed thin #CCCCCC;
+float:left;
+}
+
+.splash{
+max-width:400px;
+text-align: left;
+border:3px solid black;
+background-color:#ffffff;
+padding:25px;
+margin-left: auto;
+margin-right: auto;
+margin-top: 100px;
+}
+
+.loader{
+padding:10px;
+}
+
+.logo{
+float:none;
+text-align:right;
+}
+
+.text{
+}
+
+.hide{
+display:none;
+}
+.loader{
+text-align:center;
+}
+
+.result{
+min-height:25px;
+}
+
+.container{
+margin-left:350px;
+}
+
+/*********************************Start Query Mark**************************************************/
+#queryMarkDiv table{
+	margin: auto auto;		
+}
+
+.error{
+	background-color: red;
+}
+
+#querySplash{
+	width:400px;
+	max-width:960px;
+	text-align: left;
+	border:3px solid black;
+	background-color:#ffffff;
+	padding:25px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+
+#result{
+	max-height:400px;
+	overflow: auto;
+	text-align: center;
+}
+
+tr.table_roweven {
+	background-color: #ffffff;
+}
+tr.table_rowodd {
+	background-color: #f0eeec;
+}
+.queryResult tr:hover{
+    background-color:#0099CC;
+}
+
+/* Sort */
+.queryResult td,.queryResult th {
+	color: #595c62;
+	font-size: 11px;
+	height: 21px;
+	line-height: 14px;
+	overflow: hidden;
+	text-align: left;
+	white-space: normal;
+	padding-left:10px;
+}
+
+.table_th {
+	background-color: #ddd4d0;
+	height: 22px;
+	padding-right: 20px;
+}
+/*********************************End Query Mark**************************************************/

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<style>
+#content {
+  width: 700px ;
+  margin-left: auto ;
+  margin-right: auto ;
+  
+}
+</style>
+<head>
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <title>Num&eacute;ro d'entreprise</title>
+     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+<script type="text/javascript">
+
+function checkAndSubmit()
+{
+	var tvanumber = document.getElementById('tvanumber').value; 
+	
+	if ( tvanumber.length != 10)
+		alert("Veuillez donner un numero d'entreprise.");
+	else
+		document.formcompanydata.submit();
+}
+
+</script>
+
+</head>
+<body style="background-color:#FFFFFF;" onload="">
+	<br>
+	<br>
+	<div id="content">
+	<div style="Float:right;"><img src="https://fourturemark.appspot.com/images/logo_secu.gif"></div>
+    <div>
+        <div id="benchmark" >
+			<BR>
+			<BR>
+			<h3>Veuillez remplir les donn&eacute;es suivantes:</h3>
+
+    		<form id="formcompanydata" name="formcompanydata" action="/index.html" method="get">
+    		<input type="hidden" name="param1" value="OB201101" />
+    		Num&eacute;ro d'entreprise: <input id="be" type="TextField" size="2" maxlength="2" name="be" value="BE" readonly/>
+    		<input id="tvanumber" type="TextField" maxlength="10" name="param2" value="0" /> (format 0xxxxxxxxx)
+    		<input type="hidden" name="param3" value="" />
+    		<input type="hidden" name="lang" value="fr" /><BR><BR>
+    		<input type="button" onclick="checkAndSubmit();" value="Effectuer le test">
+    		</form>
+            
+        </div>
+    </div>
+
+    <div id="formsubmit"></div> 
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  
+  <precompilation-enabled>true</precompilation-enabled>
+  
+  <!-- Servlets -->
+  
+  <servlet>
+    <servlet-name>parseuseragentServlet</servlet-name>
+    <servlet-class>com.fourture.mark.server.ParseUserAgentServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>parseuseragentServlet</servlet-name>
+    <url-pattern>/cron/parseuseragentServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>websitekickServlet</servlet-name>
+    <servlet-class>com.fourture.mark.server.WebSiteKickServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>websitekickServlet</servlet-name>
+    <url-pattern>/websitekickServlet</url-pattern>
+  </servlet-mapping>
+
+
+
+  <servlet>
+    <servlet-name>memmonServlet</servlet-name>
+    <servlet-class>com.fourture.mark.server.MemmonServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>memmonServlet</servlet-name>
+    <url-pattern>/memmonServlet</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>gcfServlet</servlet-name>
+    <servlet-class>com.fourture.mark.server.GCFServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>gcfServlet</servlet-name>
+    <url-pattern>/gcfServlet</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- Servlets -->
+  
+  <servlet>
+    <servlet-name>optinBrowserSupportServlet</servlet-name>
+    <servlet-class>com.fourture.mark.server.OptinBrowserSupportServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>optinBrowserSupportServlet</servlet-name>
+    <url-pattern>/optinbrowsersupport</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>benchmarkServlet</servlet-name>
+    <servlet-class>com.fourture.mark.server.BenchmarkServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>benchmarkServlet</servlet-name>
+    <url-pattern>/cron/benchmarkServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>benchmarkExcelServlet</servlet-name>
+    <servlet-class>com.fourture.mark.server.BenchmarkExcelServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>benchmarkExcelServlet</servlet-name>
+    <url-pattern>/cron/benchmarkExcelServlet</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>memmonExcelServlet</servlet-name>
+    <servlet-class>com.fourture.mark.server.MemmonExcelServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>memmonExcelServlet</servlet-name>
+    <url-pattern>/cron/memmonExcelServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>optinServlet</servlet-name>
+    <servlet-class>com.fourture.mark.server.OptinServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>optinServlet</servlet-name>
+    <url-pattern>/cron/optinServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>queryMark</servlet-name>
+    <servlet-class>com.fourture.mark.server.QueryMark</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>queryMark</servlet-name>
+    <url-pattern>/cron/queryMark</url-pattern>
+  </servlet-mapping>
+
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>FourtureMark.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

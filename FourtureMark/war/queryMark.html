@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <title>Query</title>
+    <!-- 
+        <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/prototype/1.6.1/prototype.js'></script>
+    	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.3/scriptaculous.js'></script>
+    -->
+    <script type='text/javascript' src='JavaScript/prototype.js'></script>
+    <script type='text/javascript' src='JavaScript/queryMark.js'></script>
+</head>
+
+<body onload="build();">
+
+	<div style="text-align: center; margin-top:50px;">
+	<div id="querySplash" style="text-align: left; margin: 1em auto;">
+	  <div class="logo"><img src="images/logo_secu.gif"></div>
+	  <!-- <div id="loader" class="loader"><img src="images/loader_splash.gif" /></div> -->
+	  <div id= "queryMarkDiv" class="text">
+	  		<table>
+	  			<tr id='p1_row'>
+	  				<td><select id='p1' onchange='paramOnchange(this);'></select></td>
+	  				<td><input type='text' id='v1'></td>
+	  			</tr>
+	  			<tr id='p2_row'>
+	  				<td><select id='p2' onchange='paramOnchange(this);'></select></td>
+	  				<td><input type='text' id='v2'></td>
+	  			</tr>
+	  			<tr id='p3_row'>
+	  				<td><select id='p3' onchange='paramOnchange(this);'></select></td>
+	  				<td><input type='text' id='v3'></td>
+	  			</tr>
+	  			<tr>
+	  				<td colspan='2'><button onclick='queryButtonClicked()' id='queryButton'>Query</button></td>
+	  			</tr>
+	  		</table>
+	  		<div id='result'></div>
+	  </div>
+	</div>
+
+</body>
+</html>

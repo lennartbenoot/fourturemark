@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html> 
+<head> 
+        <title>Securex Browser Check</title> 
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+        <meta http-equiv="Cache-Control" content="must-revalidate"> 
+        <meta http-equiv="Cache-Control" content="proxy-revalidate"> 
+        <meta http-equiv="Cache-Control" content="no-store"> 
+        <meta http-equiv="Cache-Control" content="no-cache"> 
+        <meta http-equiv="Pragma" content="no-cache"> 
+        <meta http-equiv="Expires" content="0"> 
+        <script type="text/javascript" src="http://localhost:8888/websitekickServlet?lang=nl"></script> 
+</head> 
+
+<script>
+	function performCheck() {
+		alert('in 1');
+		try {
+			websitekick('cbs','','2019');
+		 }
+		catch(err){
+			alert('catch');
+		}	
+
+		window.location.href = "http://www.securex.be";
+	}
+
+</script>
+
+<!--  <body onload="javascript:document.getElementById('link').click();">  -->
+<body onload="javascript:performCheck()">
+
+
+	<a id="link" href="http://www.securex.be" onClick="return websitekick('cbs','','2019');"> </a> 
+        
+</body> 
+</html> 

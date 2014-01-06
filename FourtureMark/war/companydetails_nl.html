@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<style>
+#content {
+  width: 700px ;
+  margin-left: auto ;
+  margin-right: auto ;
+  
+}
+</style>
+<head>
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <title>Ondernemingsnummer Firma</title>
+	 <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	 
+<script type="text/javascript">
+
+function checkAndSubmit()
+{
+	var tvanumber = document.getElementById('tvanumber').value; 
+	
+	if ( tvanumber.length != 10)
+		alert("Gelieve een ondernemingsnummer in te geven.");
+	else
+		document.formcompanydata.submit();
+}
+
+</script>
+
+</head>
+<body style="background-color:#FFFFFF;" onload="">
+	<br>
+	<br>
+	<div id="content">
+	<div style="Float:right;"><img src="https://fourturemark.appspot.com/images/logo_secu.gif"></div>
+    <div>
+        <div id="benchmark" >
+			<BR>
+			<BR>
+			<h3>Gelieve de volgende gegevens in te vullen:</h3>
+
+    		<form id="formcompanydata" name="formcompanydata" action="/index.html" method="get">
+    		<input type="hidden" name="param1" value="OB201101" />
+    		Ondernemingsnummer: <input id="be" type="TextField" size="2" maxlength="2" name="be" value="BE" readonly/> 
+    		<input id="tvanumber" type="TextField" name="param2" value="0" /> (formaat 0xxxxxxxxx)
+    		<input type="hidden" name="param3" value="" />
+    		<input type="hidden" name="lang" value="nl" /><BR><BR>
+    		<input type="button" onclick="checkAndSubmit();" value="Test uitvoeren">
+    		</form>
+            
+        </div>
+    </div>
+
+    <div id="formsubmit"></div> 
+
+	</div>
+</body>
+</html>
