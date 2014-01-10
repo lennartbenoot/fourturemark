@@ -1,5 +1,9 @@
 package com.fourture.mark;
 
+import net.sf.uadetector.ReadableUserAgent;
+import net.sf.uadetector.UserAgentStringParser;
+import net.sf.uadetector.service.UADetectorServiceFactory;
+
 import org.apache.turbine.util.BrowserDetector;
 
 public class ParseUserAgent {
@@ -40,9 +44,13 @@ public class ParseUserAgent {
 	{
 		
 		try {
+					
+			// New method
+			// Get an UserAgentStringParser and analyze the requesting client
+			UserAgentStringParser parser = UADetectorServiceFactory.getResourceModuleParser();
+			ReadableUserAgent agent = parser.parse( userAgent);		
 			
 			// Browser Detector crashes on some UserAgents, handle them here
-			
 			String browserVersionStr;
 			
 			//Chromeframe: 2 tyes of useragents known
@@ -62,24 +70,6 @@ public class ParseUserAgent {
 				device = parseDevice( userAgent);
 				return;
 			}
-			
-			
-			
-			// Use Browser Detectord
-			
-			BrowserDetector bd = new BrowserDetector( userAgent);
-			
-			browserName = bd.getBrowserName();
-			browserVersion = bd.getBrowserVersion();		
-			platform = bd.getBrowserPlatform();
-			mobile = false;
-			
-			//
-			platformVersion = parsePlatformVersion( userAgent);
-			device = parseDevice( userAgent);
-			
-			browserVersionStr = String.valueOf( bd.getBrowserVersion());
-			
 			//User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; chromeframe/14.0.835.163; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30; .NET CLR 3.0.04506.648; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)
 			if (userAgent.contains( "chromeframe")) {
 				browserName = "IE GCF";
@@ -88,82 +78,24 @@ public class ParseUserAgent {
 				browserVersionStr = userAgent.substring( i + 5, userAgent.length());
 				//i= browserVersion.indexOf(",");
 				browserVersionStr = browserVersionStr.substring( 0, 3);
-				browserVersion = Float.valueOf( browserVersionStr);
-			}
+				browserVersion = Float.valueOf( browserVersionStr);			
+				platform = agent.getOperatingSystem().getFamilyName();
+				platformVersion = agent.getOperatingSystem().getName();
+				normalize();
+				return;
+			}	
 			
-			if (userAgent.contains( "Firefox")) {
-				browserName = "Firefox";
-				// get version only major and minor. Example 3.6.3 : we only need 3.6
-				int i= userAgent.indexOf("Firefox");
-				browserVersionStr = userAgent.substring( i + 8, userAgent.length());
-				//i= browserVersion.indexOf(",");
-				browserVersionStr = browserVersionStr.substring( 0, 3);
-				browserVersion = Float.valueOf( browserVersionStr);
-			}
+			browserName = agent.getName();
+			browserVersionStr = agent.getVersionNumber().getMajor();
+			browserVersion = Float.valueOf( browserVersionStr);
+			platform = agent.getOperatingSystem().getFamilyName();
+			platformVersion = agent.getOperatingSystem().getName();
 			
-			if (userAgent.contains( "Maemo") && userAgent.contains( "Firefox")) {
-				browserName = "Firefox";
-				// get version only major and minor. Example 3.6.3 : we only need 3.6
-				int i= userAgent.indexOf("Firefox");
-				browserVersionStr = userAgent.substring( i + 8, userAgent.length());
-				//i= browserVersion.indexOf(",");
-				browserVersionStr = browserVersionStr.substring( 0, 3);
-				browserVersion = Float.valueOf( browserVersionStr);
-				mobile = true;
-			}
-			
-			if (userAgent.contains("Chrome")){
-				browserName = "Chrome";
-				// get version only major and minor. Example 3.6.3 : we only need 3.6
-				int i= userAgent.indexOf("Chrome");
-				browserVersionStr = userAgent.substring( i + 7, userAgent.length());
-				//i= browserVersion.indexOf(",");
-				browserVersionStr = browserVersionStr.substring( 0, 3);
-				browserVersion = Float.valueOf( browserVersionStr);
-				mobile = false;
-			}
-			
-			if (userAgent.contains("iPhone") && userAgent.contains( "Safari")){
-				browserName = "Safari";
-				// get version only major and minor. Example 3.6.3 : we only need 3.6
-				int i= userAgent.indexOf("Version");
-				browserVersionStr = userAgent.substring( i + 8, userAgent.length());
-				//i= browserVersion.indexOf(",");
-				browserVersionStr = browserVersionStr.substring( 0, 3);
-				browserVersion = Float.valueOf( browserVersionStr);
-				mobile = true;
-			}
-			if (userAgent.contains("iPad") && userAgent.contains( "Safari")){
-				browserName = "Safari";
-				// get version only major and minor. Example 3.6.3 : we only need 3.6
-				int i= userAgent.indexOf("Version");
-				browserVersionStr = userAgent.substring( i + 8, userAgent.length());
-				//i= browserVersion.indexOf(",");
-				browserVersionStr = browserVersionStr.substring( 0, 3);
-				browserVersion = Float.valueOf( browserVersionStr);
-				mobile = false;
-			}
-			if (userAgent.contains("Macintosh") && userAgent.contains( "Safari") && !userAgent.contains( "Chrome")){
-				browserName = "Safari";
-				// get version only major and minor. Example 3.6.3 : we only need 3.6
-				int i= userAgent.indexOf("Version");
-				browserVersionStr = userAgent.substring( i + 8, userAgent.length());
-				//i= browserVersion.indexOf(",");
-				browserVersionStr = browserVersionStr.substring( 0, 3);
-				browserVersion = Float.valueOf( browserVersionStr);
-				mobile = false;
-			}
-			//Safari on Windows
-			//Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2
-			if (userAgent.contains("Windows") && userAgent.contains( "Safari") && !userAgent.contains( "Chrome")){
-				browserName = "Safari";
-				// get version only major and minor. Example 3.6.3 : we only need 3.6
-				int i= userAgent.indexOf("Version");
-				browserVersionStr = userAgent.substring( i + 8, userAgent.length());
-				//i= browserVersion.indexOf(",");
-				browserVersionStr = browserVersionStr.substring( 0, 3);
-				browserVersion = Float.valueOf( browserVersionStr);
-				mobile = false;
+			//Actually, this will always return true with the new browser detector software
+			if ( browserName != null ){ 
+				normalize();
+				
+				return;
 			}
 			
 		} catch (Exception e) {
@@ -171,6 +103,15 @@ public class ParseUserAgent {
 			e.printStackTrace();
 		}
 			
+	}
+	
+	private void normalize() {
+		if ( "Windows XP".equals( platformVersion)) platformVersion = "XP";
+		if ( "Windows 7".equals( platformVersion)) platformVersion = "7";
+		if ( "Windows 8".equals( platformVersion)) platformVersion = "8";
+		if ( "Windows Vista".equals( platformVersion)) platformVersion = "Vista"; 
+		
+		if ( "IE".equals( browserName)) browserName = "MSIE";
 	}
 	
 	private String parseDevice(String userAgent) {
@@ -231,20 +172,22 @@ public class ParseUserAgent {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		
 		// TODO Auto-generated method stub
 		String useragent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; nl; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3,gzip(gfe)";
 		ParseUserAgent p = new ParseUserAgent( useragent);
 		if (! p.getBrowserName().equals("Firefox")) System.out.println("Error parsing:" + useragent);
-		if ( p.getBrowserVersion() != 3.6F ) System.out.println("Error parsing:" + useragent);
+		if ( p.getBrowserVersion() != 3F ) System.out.println("Error parsing:" + useragent);
 		if ( !p.platformVersion.equals("XP")) System.out.println("Error parsing:" + useragent);
-		p.validate( p.device.equals("Unknown"), useragent);
+		//p.validate( p.device.equals("Unknown"), useragent);
 		
-		useragent ="Mozilla/5.0 (X11; U; Linux armv7l; en-US; rv:1.9.2a1pre) Gecko/20091127 Firefox/3.5 Maemo Browser 1.5.6 RX-51 N900,gzip(gfe)";
+		useragent ="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36";
 		p = new ParseUserAgent( useragent);
-		if (! p.getBrowserName().equals("Firefox")) System.out.println("Error parsing:" + useragent);
-		if ( p.getBrowserVersion() != 3.5F ) System.out.println("Error parsing:" + useragent);
-		if ( p.isMobile() != true ) System.out.println("Error parsing:" + useragent);
-		p.validate( p.device.equals("N900"), useragent);
+		//if (! p.getBrowserName().equals("Firefox")) System.out.println("Error parsing:" + useragent);
+		//if ( p.getBrowserVersion() != 3.5F ) System.out.println("Error parsing:" + useragent);
+		//if ( p.isMobile() != true ) System.out.println("Error parsing:" + useragent);
+		//p.validate( p.device.equals("N900"), useragent);
 		
 		
 		useragent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Chrome/4.1.249.1064 Safari/532.5,gzip(gfe)";

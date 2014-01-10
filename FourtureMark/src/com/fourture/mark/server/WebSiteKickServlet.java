@@ -49,6 +49,10 @@ public class WebSiteKickServlet extends HttpServlet {
 
 				if (p.getBrowserVersion() < 9.0f)
 					resp.getOutputStream().println(createFunction(lang, "IE"));
+				
+				if (p.getBrowserVersion() == 10.0f)
+					resp.getOutputStream().println(createFunction(lang, "IE"));
+				
 			}
 			// Firefox Browser < 6 Check
 			else if ((p.getBrowserName().equals("Firefox"))

@@ -9,6 +9,17 @@
   
   <!-- Servlets -->
   
+   <servlet>
+    <servlet-name>dataStoreUpdateServlet</servlet-name>
+    <servlet-class>com.fourture.mark.server.DataStoreUpdateServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>dataStoreUpdateServlet</servlet-name>
+    <url-pattern>/dataStoreUpdateServlet</url-pattern>
+  </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>parseuseragentServlet</servlet-name>
     <servlet-class>com.fourture.mark.server.ParseUserAgentServlet</servlet-class>

@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.uadetector.ReadableUserAgent;
+import net.sf.uadetector.UserAgentStringParser;
+import net.sf.uadetector.service.UADetectorServiceFactory;
+
 import com.fourture.mark.ParseUserAgent;
 
 @SuppressWarnings("serial")
@@ -26,7 +30,7 @@ public class ParseUserAgentServlet extends HttpServlet {
 			 
 			String useragent = req.getHeader("User-Agent");
 			ParseUserAgent p = new ParseUserAgent( useragent);
-
+			
 			//resp.setContentType("application/json");
 			resp.setContentType("text/html");
 			
