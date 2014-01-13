@@ -49,9 +49,14 @@ public class WebSiteKickServlet extends HttpServlet {
 
 				if (p.getBrowserVersion() < 9.0f)
 					resp.getOutputStream().println(createFunction(lang, "IE"));
+
+				else if (p.getBrowserVersion() == 11.0f)
+					resp.getOutputStream().println(createFunction(lang, "IE11"));
 				
-				if (p.getBrowserVersion() == 10.0f)
-					resp.getOutputStream().println(createFunction(lang, "IE"));
+				else {
+					String ret = generateBrowsenOKCode( debug);
+					resp.getOutputStream().print(  ret);
+				}
 				
 			}
 			// Firefox Browser < 6 Check
@@ -66,11 +71,7 @@ public class WebSiteKickServlet extends HttpServlet {
 			//	resp.getOutputStream().println(createFunction(lang, "FF16"));
 			//}
 			else {
-				String ret = "function websitekick( param1, param2, param3) {" 
-					+ generateBenchmarkServletHtml()
-					+ (debug == null ?  "window.location.href = 'https://www.mysecurexhrservices.eu';" : "alert('redirect not called due to debug mode');")
-					+ " return true;}";
-				
+				String ret = generateBrowsenOKCode( debug);
 				resp.getOutputStream().print(  ret);
 			}
 
@@ -83,6 +84,17 @@ public class WebSiteKickServlet extends HttpServlet {
 			// e.toString();
 		}
 	}
+	
+	public String generateBrowsenOKCode( String debug){
+		
+		String ret = "function websitekick( param1, param2, param3) {" 
+			+ generateBenchmarkServletHtml()
+			+ (debug == null ?  "window.location.href = 'https://www.mysecurexhrservices.eu';" : "alert('redirect not called due to debug mode');")
+			+ " return true;}";
+		
+		return ret;
+		
+	}
 
 	public String createFunction(String lang, String actualCase) {
 
@@ -92,6 +104,9 @@ public class WebSiteKickServlet extends HttpServlet {
 			if ("IE".equals(actualCase))
 				message = GoogleUtil
 						.readGoogleDocCached("1yTe5vfEfM8tVaZ43l5LG1-CFVCauc6DtnIYqNtdlGvY");
+			if ("IE11".equals(actualCase))
+				message = GoogleUtil
+						.readGoogleDocCached("1mviHpZaB9jsEBpBJ0wKAPpBPGHMpbEYPND8k2lbnJZ0");
 			if ("FF".equals(actualCase))
 				message = GoogleUtil
 						.readGoogleDocCached("1Q1gT4xM3sQsWR3JxE0xcYpZ3tLXhs9Rnl8PNOjR0EMw");
@@ -103,6 +118,9 @@ public class WebSiteKickServlet extends HttpServlet {
 			if ("IE".equals(actualCase))
 				message = GoogleUtil
 						.readGoogleDocCached("1ifi3bjxqmvqZenpUf_jIbFrUnQnAAl06h0VWpYhacwc");
+			if ("IE11".equals(actualCase))
+				message = GoogleUtil
+						.readGoogleDocCached("1IAJIqSSmPNAZ77uyuLHunh176WqMsg8FqHBFjZPL7jQ");
 			if ("FF".equals(actualCase))
 				message = GoogleUtil
 						.readGoogleDocCached("1AN1ZrRvcJj-oA4e0g-8pJTeewVnzKT2AUdhLueG7ppY");
