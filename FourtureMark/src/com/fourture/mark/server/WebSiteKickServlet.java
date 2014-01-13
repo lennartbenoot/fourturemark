@@ -49,7 +49,7 @@ public class WebSiteKickServlet extends HttpServlet {
 
 				if (p.getBrowserVersion() < 9.0f)
 					resp.getOutputStream().println(createFunction(lang, "IE"));
-
+				
 				else if (p.getBrowserVersion() == 11.0f)
 					resp.getOutputStream().println(createFunction(lang, "IE11"));
 				
