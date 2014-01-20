@@ -142,14 +142,14 @@ public class WebSiteKickServlet extends HttpServlet {
 				+ "function hidediv(){  document.getElementById(\"websitekickmodal\").style.visibility = \"hidden\";}\n"
 
 				+ "if(!window.ActiveXObject){\n"
-				+ "	divTag.setAttribute(\"style\",\"font-family: Verdana, sans-serif; padding-left:20px; color: black; font-size:small; margin-left:auto; margin-right:auto; float:center; display:block; width:640px; border:1px solid #000000; background-color:#FFFFFF;\");\n"
+				+ "		divTag.setAttribute(\"style\",\"font-family: Verdana, sans-serif; padding-left:20px; color: black; font-size:small; margin-left:auto; margin-right:auto; float:center; display:block; width:640px; border:1px solid #000000; background-color:#FFFFFF;\");\n"
 				+ "} else {\n"
-				+ "	divTag.style.setAttribute(\"cssText\", \"font-family: Verdana, sans-serif; padding-left:20px; color: black; font-size:small; margin-left:auto; margin-right:auto; float:center; display:block; width:640px; border:1px solid #000000; background-color:#FFFFFF;\");\n"
+				+ "		divTag.style.setAttribute(\"cssText\", \"font-family: Verdana, sans-serif; padding-left:20px; color: black; font-size:small; margin-left:auto; margin-right:auto; float:center; display:block; width:640px; border:1px solid #000000; background-color:#FFFFFF;\");\n"
 				+ "}\n"
-				+ " divTag.innerHTML = '<br><div style=\"Float:right;\"><img src=\"https://fourturemark.appspot.com/images/logo_secu.gif\"></div><div style=\"margin-left: auto; margin-right: auto;text-align: left;\">"
-				+ message + "</div><br>';\n"
-				+ "divTag.style.visibility = 'hidden';\n"
-				+ " document.body.appendChild(divTag);" + " return false; }\n";
+				+ "divTag.innerHTML = '<br><div style=\"Float:right;\"><img src=\"https://fourturemark.appspot.com/images/logo_secu.gif\"></div><div style=\"margin-left: auto; margin-right: auto;text-align: left;\">"
+				+  message + "</div><br>';\n"
+				//+ "divTag.style.visibility = 'hidden';\n"
+				+ "document.body.appendChild(divTag);" + " return false; }\n";
 
 		return str;
 	}
