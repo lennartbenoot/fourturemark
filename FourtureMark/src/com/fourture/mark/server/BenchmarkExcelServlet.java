@@ -43,6 +43,7 @@ public class BenchmarkExcelServlet extends HttpServlet {
 
 			String param1 = req.getParameter("param1");
 			String startdate = req.getParameter("startdate");
+			String enddate = req.getParameter("enddate");
 			
 			if ( (startdate == null) ||  ("".equals( startdate)))
 				startdate = "01/05/2013";
@@ -68,14 +69,27 @@ public class BenchmarkExcelServlet extends HttpServlet {
 //				allObjects = (Collection) query.execute( param1);
 //			}
 //			else {
+			if (enddate == null ){
 				query = pm.newQuery(com.fourture.mark.Mark.class );
 				query.setOrdering("timestamp");
 				query.setFilter( "timestamp > param");
 				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-				Date date = sdf.parse( startdate);
+				Date startdateD = sdf.parse( startdate);
 				query.declareParameters("java.util.Date param");
-				allObjects = (Collection) query.execute( date);
-//			}
+				allObjects = (Collection) query.execute( startdateD);
+			}
+			else {
+				query = pm.newQuery(com.fourture.mark.Mark.class );
+				query.setOrdering("timestamp");
+				query.setFilter( "timestamp > param && timestamp < param2");
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				Date startdateD = sdf.parse( startdate);
+				Date enddateD = sdf.parse( enddate);
+				query.declareParameters("java.util.Date param, java.util.Date param2");
+				allObjects = (Collection) query.execute( startdateD, enddateD);				
+								
+			}
+			
 			
 			// pm.deletePersistentAll( allObjects);
 			pm.currentTransaction().commit();

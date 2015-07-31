@@ -51,8 +51,8 @@ public class WebSiteKickServlet extends HttpServlet {
 					resp.getOutputStream().println(createFunction(lang, "IE"));
 				
 				//
-				else if (p.getBrowserVersion() == 11.0f)
-					resp.getOutputStream().println(createFunction(lang, "IE11"));
+				//else if (p.getBrowserVersion() == 11.0f)
+				//	resp.getOutputStream().println(createFunction(lang, "IE11"));
 				
 				else {
 					String ret = generateBrowsenOKCode( debug);
@@ -62,7 +62,7 @@ public class WebSiteKickServlet extends HttpServlet {
 			}
 			// Firefox Browser < 6 Check
 			else if ((p.getBrowserName().equals("Firefox"))
-					&& (p.getBrowserVersion() < 6.0f)) {
+					&& (p.getBrowserVersion() < 18.0f)) {
 
 				resp.getOutputStream().println(createFunction(lang, "FF"));
 			} 
