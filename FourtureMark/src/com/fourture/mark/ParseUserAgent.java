@@ -91,6 +91,10 @@ public class ParseUserAgent {
 			platform = agent.getOperatingSystem().getFamilyName();
 			platformVersion = agent.getOperatingSystem().getName();
 			
+			//fix to be able to detect Windows 10
+			if (platformVersion.equals("Windows"))
+				if (userAgent.contains("Windows NT 10.0")) platformVersion = "10";
+			
 			//Actually, this will always return true with the new browser detector software
 			if ( browserName != null ){ 
 				normalize();
