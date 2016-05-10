@@ -66,6 +66,11 @@ public class WebSiteKickServlet extends HttpServlet {
 
 				resp.getOutputStream().println(createFunction(lang, "FF"));
 			} 
+			else if ((p.getBrowserName().equals("Edge"))
+					&& (p.getBrowserVersion() < 13.0f)) {
+
+				resp.getOutputStream().println(createFunction(lang, "Edge"));
+			} 
 			//else if ((p.getBrowserName().equals("Firefox"))
 			//		&& (p.getBrowserVersion() == 16.0f)) {
 			//
@@ -102,6 +107,10 @@ public class WebSiteKickServlet extends HttpServlet {
 		String message = "";
 
 		if ("nl".equals(lang)) {
+			
+			if ("Edge".equals(actualCase))
+				message = GoogleUtil
+						.readGoogleDocCached("1DttUKRXUrxC5oiJjBrZzaIMEOLrc2LOFSEEoIxEq_dg");
 			if ("IE".equals(actualCase))
 				message = GoogleUtil
 						.readGoogleDocCached("1yTe5vfEfM8tVaZ43l5LG1-CFVCauc6DtnIYqNtdlGvY");
@@ -116,6 +125,9 @@ public class WebSiteKickServlet extends HttpServlet {
 						.readGoogleDocCached("18SXX86EE4f7q-576e1nJN_ET_gfZ1ZN_yKDy4H4KrXk");
 		}
 		if ("fr".equals(lang)) {
+			if ("Edge".equals(actualCase))
+				message = GoogleUtil
+						.readGoogleDocCached("1sWDjMnqi140wHwOOBML3pb5sUr7jOIzNWQ59C-yjI3M");
 			if ("IE".equals(actualCase))
 				message = GoogleUtil
 						.readGoogleDocCached("1ifi3bjxqmvqZenpUf_jIbFrUnQnAAl06h0VWpYhacwc");
