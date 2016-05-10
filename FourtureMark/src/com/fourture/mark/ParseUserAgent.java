@@ -83,7 +83,20 @@ public class ParseUserAgent {
 				platformVersion = agent.getOperatingSystem().getName();
 				normalize();
 				return;
-			}	
+			}
+			
+			//User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240
+ 			if (userAgent.contains( "Edge")) {
+ 				browserName = "Edge";
+ 				int i= userAgent.indexOf("Edge");
+ 				browserVersionStr = userAgent.substring( i + 5, userAgent.length());
+ 				browserVersionStr = browserVersionStr.substring( 0, 3);
+ 				browserVersion = Float.valueOf( browserVersionStr);			
+ 				platform = agent.getOperatingSystem().getFamilyName();
+ 				platformVersion = agent.getOperatingSystem().getName();
+ 				normalize();
+ 				return;
+ 			}
 			
 			browserName = agent.getName();
 			browserVersionStr = agent.getVersionNumber().getMajor();
@@ -177,10 +190,12 @@ public class ParseUserAgent {
 	 */
 	public static void main(String[] args) {
 		
+		String useragent = "Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
+		ParseUserAgent p = new ParseUserAgent( useragent);
 		
 		// TODO Auto-generated method stub
-		String useragent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; nl; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3,gzip(gfe)";
-		ParseUserAgent p = new ParseUserAgent( useragent);
+		useragent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; nl; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3,gzip(gfe)";
+		p = new ParseUserAgent( useragent);
 		if (! p.getBrowserName().equals("Firefox")) System.out.println("Error parsing:" + useragent);
 		if ( p.getBrowserVersion() != 3F ) System.out.println("Error parsing:" + useragent);
 		if ( !p.platformVersion.equals("XP")) System.out.println("Error parsing:" + useragent);
